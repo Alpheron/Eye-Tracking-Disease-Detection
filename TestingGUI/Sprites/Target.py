@@ -16,12 +16,11 @@ class Target(pygame.sprite.Sprite):
         self.index = 0
         self.isMovementFinished = False
         self.rect = self.image.get_rect()
-        self.rect.center = getScreenDimensions()
+        self.rect.center = [getScreenDimensions()[0] / 2, getScreenDimensions()[1] / 2]
 
     def followPath(self, ticks):
         if self.isMovementFinished:
             self.index += 1
-        print(self.coordinates[self.index])
         self.move(self.coordinates[self.index], ticks)
 
     def move(self, point, ticks):
@@ -37,6 +36,7 @@ class Target(pygame.sprite.Sprite):
             rectList[0] += float(self.velocity) * ticks / 1000
         if distY > 0:  # Is broken
             rectList[1] += float(self.velocity) * ticks / 1000
+        print(rectList)
         self.rect.center = tuple(rectList)
         constrainedRect = self.rect.clamp(self.screen.get_rect())
         self.rect = constrainedRect

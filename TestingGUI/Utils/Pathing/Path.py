@@ -10,5 +10,4 @@ def dataProcessing():
             for x in row:
                 rowList.append(int(x))
             dataList.append(rowList)
-    print(dataList)
     return dataList
