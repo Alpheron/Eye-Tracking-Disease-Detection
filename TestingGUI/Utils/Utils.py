@@ -21,3 +21,8 @@ def quitLoopConditional(started):
 def loadImage(pathToImage, size):
     surface = pygame.image.load(pathToImage).convert_alpha()
     return pygame.transform.scale(surface, [size, size])
+
+
+def init():
+    pygame.display.set_caption("Eye Calibration")
+    pygame.event.set_allowed([pygame.QUIT])
