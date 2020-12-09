@@ -1,3 +1,6 @@
+import sys
+import time
+
 import pygame
 
 from TestingGUI.Sprites.Background import Background
@@ -19,12 +22,17 @@ class EyeCalibration:
     def calibrationRoutine(self):
         self.isRunning = True
         ticks = 0
+        start = time.time()
         while self.isRunning:
             self.background.fill([0, 255, 0])
             self.target.followPath(ticks)
             ticks = self.clock.tick_busy_loop(60)
             pygame.display.flip()
             quitLoopConditional(self.isRunning)
+            if self.target.finalDestReached:
+                end = time.time()
+                print(end - start)
+                sys.exit()
 
 
 if __name__ == '__main__':
