@@ -1,4 +1,4 @@
-from math import hypot, tan, atan2, degrees, ceil
+from math import hypot
 
 import pygame
 
@@ -13,12 +13,13 @@ class Target(pygame.sprite.Sprite):
         self.coordinates = dataProcessing()
         self.radius = 40
         self.image = loadImage('/home/tinku/Eye-Tracking-Disease-Detection/TestingGUI/Assets/target.png', self.radius)
-        self.velocity = 50
+        self.rect = self.image.get_rect()
+        self.velocity = 5
         self.index = 0
         self.isMovementFinished = False
         self.finalDestReached = False
-        self.rect = self.image.get_rect()
         self.rect.center = [getScreenDimensions()[0] / 2, getScreenDimensions()[1] / 2]
+        self.cloneRect = self.rect
 
     def followPath(self, ticks):
         try:
@@ -34,30 +35,30 @@ class Target(pygame.sprite.Sprite):
         rectList = list(self.rect.center)
         distX = point[0] - rectList[0]
         distY = point[1] - rectList[1]
-        angle = (atan2(distY, distX))
-        print(degrees(angle))
-        yVel = tan(angle) * self.velocity
-        if distX < 0:
-            rectList[0] -= ceil((self.velocity * ticks) / 1000)
         if distX > 0:
-            rectList[0] += ceil((self.velocity * ticks) / 1000)
-        '''
-        Check to see if x coordinate is the same, if so then set its velocity to the initial one
-        '''
-        if distY < 0:
-            rectList[1] -= ceil((yVel * ticks) / 1000)
+            rectList[0] += ((self.velocity * ticks) / 1000)
+        if distX < 0:
+            rectList[0] -= ((self.velocity * ticks) / 1000)
         if distY > 0:
-            rectList[1] += ceil((yVel * ticks) / 1000)
+            if distX <= self.radius:
+                rectList[1] += ((self.velocity * ticks) / 1000)
+            else:
+                rectList[1] += ((self.velocity * ticks) / 1000)
+        if distY < 0:
+            if distX <= self.radius:
+                rectList[1] -= ((self.velocity * ticks) / 1000)
+            else:
+                rectList[1] -= ((self.velocity * ticks) / 1000)
         self.rect.center = rectList
         constrainedRect = self.rect.clamp(self.screen.get_rect())
         self.rect = constrainedRect
+        print(self.rect.topleft)
         self.screen.blit(self.image, self.rect)
-        if point == [0, 800] or point == [800, 0] or point == [0, 0] or point == [800, 800]:
-            if hypot(point[0] - rectList[0], point[1] - rectList[1]) <= 30:
-                # print("True but is a corner")
+        if point == [0, 1000] or point == [0, 0] or point == [1000, 0] or point == [1000, 1000]:
+            if self.rect.topleft == tuple([0, 0]) or self.rect.topright == tuple([1000, 0]) or self.rect.bottomright == \
+                    tuple([1000, 1000]) or self.rect.bottomleft == tuple([0, 1000]):
+                print("True but is a corner")
                 self.isMovementFinished = True
-                return None
         elif hypot(point[0] - rectList[0], point[1] - rectList[1]) <= 1.5:
-            # print(True)
             self.isMovementFinished = True
-            return None
+        return None
