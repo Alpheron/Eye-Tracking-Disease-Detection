@@ -8,6 +8,7 @@ def main():
     eyeCallibrationGUI = EyeCalibration(gaze, webcam)
     graphRender = Plotter(eyeCallibrationGUI.leftEyeCoords, eyeCallibrationGUI.rightEyeCoords,
                           eyeCallibrationGUI.targetCoords)
+    graphRender.plot()
 
 
 if __name__ == "__main__":

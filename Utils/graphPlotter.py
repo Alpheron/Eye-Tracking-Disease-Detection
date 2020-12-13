@@ -8,7 +8,6 @@ class Plotter:
         self.leftEye = leftEye
         self.rightEye = rightEye
         self.target = target
-        self.plot(self.leftEye, self.rightEye, self.target)
 
     def getX(self, inputList):
         xList = []
@@ -22,10 +21,10 @@ class Plotter:
             yList.append(y[1])
         return yList
 
-    def plot(self, leftEye, rightEye, target):
-        plt.plot(self.getX(target), self.getY(target), '-b', label="Target Movement")
-        plt.plot(self.getX(leftEye), self.getY(leftEye), '-g', label="Left Eye Movement")
-        plt.plot(self.getX(rightEye), self.getY(rightEye), '-r', label="Right Eye Movement")
+    def plot(self):
+        plt.plot(self.getX(self.target), self.getY(self.target), '-b', label="Target Movement")
+        plt.plot(self.getX(self.leftEye), self.getY(self.leftEye), '-g', label="Left Eye Movement")
+        plt.plot(self.getX(self.rightEye), self.getY(self.rightEye), '-r', label="Right Eye Movement")
         plt.legend(loc='best')
         plt.xlim(0, getScreenDimensions()[0])
         plt.ylim(getScreenDimensions()[1], 0)
