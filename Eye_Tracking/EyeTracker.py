@@ -15,5 +15,5 @@ def loopMethod(gaze, webcam):
     frame = gaze.annotated_frame()
     left_pupil = gaze.pupil_left_coords()
     right_pupil = gaze.pupil_right_coords()
-    cv2.imshow("Eye Tracker", frame)
+    # cv2.imshow("Eye Tracker", frame)
     return [left_pupil, right_pupil]

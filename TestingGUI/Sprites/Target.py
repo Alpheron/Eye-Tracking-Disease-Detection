@@ -12,7 +12,7 @@ class Target(pygame.sprite.Sprite):
         self.screen = screen
         self.coordinates = dataProcessing()
         self.radius = 40
-        self.image = loadImage('/home/tinku/Eye-Tracking-Disease-Detection/TestingGUI/Assets/target.png', self.radius)
+        self.image = loadImage('/Users/Tinku/Desktop/Eye-Tracking-Disease-Detection/TestingGUI/Assets/target.png', self.radius)
         self.rect = self.image.get_rect()
         self.velocity = 100
         self.index = 0
@@ -53,9 +53,9 @@ class Target(pygame.sprite.Sprite):
         constrainedRect = self.rect.clamp(self.screen.get_rect())
         self.rect = constrainedRect
         self.screen.blit(self.image, self.rect)
-        if point == [0, 1000] or point == [0, 0] or point == [1000, 0] or point == [1000, 1000]:
-            if self.rect.topleft == tuple([0, 0]) or self.rect.topright == tuple([1000, 0]) or self.rect.bottomright == \
-                    tuple([1000, 1000]) or self.rect.bottomleft == tuple([0, 1000]):
+        if point == [0, getScreenDimensions()[1]] or point == [0, 0] or point == [getScreenDimensions()[0], 0] or point == getScreenDimensions():
+            if self.rect.topleft == tuple([0, 0]) or self.rect.topright == tuple([getScreenDimensions()[0], 0]) or self.rect.bottomright == \
+                    tuple(getScreenDimensions()) or self.rect.bottomleft == tuple([0, getScreenDimensions()[1]]):
                 self.isMovementFinished = True
         elif hypot(point[0] - rectList[0], point[1] - rectList[1]) <= 1.5:
             self.isMovementFinished = True

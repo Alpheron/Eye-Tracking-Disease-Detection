@@ -18,6 +18,7 @@ class EyeCalibration:
         self.isRunning = False
         self.leftEyeCoords = []
         self.rightEyeCoords = []
+        self.targetCoords = []
         pygame.init()
         self.calibrationRoutine(gaze, webcam)
 
@@ -28,6 +29,7 @@ class EyeCalibration:
         while self.isRunning:
             self.background.fill([0, 255, 0])
             self.target.followPath(ticks)
+            self.targetCoords.append(list(self.target.rect.center))
             eyeCoords = loopMethod(gaze, webcam)
             self.leftEyeCoords.append(eyeCoords[0])
             self.rightEyeCoords.append(eyeCoords[1])

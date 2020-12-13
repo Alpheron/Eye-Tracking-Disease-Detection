@@ -3,7 +3,7 @@ import csv
 
 def dataProcessing():
     dataList = []
-    with open('/home/tinku/Eye-Tracking-Disease-Detection/TestingGUI/Utils/Pathing/path.csv', newline='') as csvfile:
+    with open('/Users/Tinku/Desktop/Eye-Tracking-Disease-Detection/TestingGUI/Utils/Pathing/path.csv', newline='') as csvfile:
         dataReader = csv.reader(csvfile, delimiter=',')
         for row in dataReader:
             rowList = []

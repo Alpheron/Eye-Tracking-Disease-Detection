@@ -4,8 +4,8 @@ import pygame
 
 
 def getScreenDimensions():
-    width = 1000
-    height = 1000
+    width = 800
+    height = 800
     return [width, height]
 
 
