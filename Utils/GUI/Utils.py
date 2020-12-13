@@ -1,5 +1,3 @@
-import sys
-
 import pygame
 
 
@@ -14,7 +12,6 @@ def quitLoopConditional(started):
         if event.type == pygame.QUIT:
             started = False
             pygame.quit()
-            sys.exit()
     return None
 
 
@@ -24,5 +21,5 @@ def loadImage(pathToImage, size):
 
 
 def init():
-    pygame.display.set_caption("Eye Calibration")
+    pygame.display.set_caption("Eye Calibration GUI")
     pygame.event.set_allowed([pygame.QUIT])

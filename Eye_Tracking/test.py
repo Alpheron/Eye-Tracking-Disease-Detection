@@ -1,6 +1,6 @@
 import cv2
 
-from Eye_Tracking.utilities.gaze_tracking import GazeTracking
+from Utils.EyeTracking.gaze_tracking import GazeTracking
 
 gaze = GazeTracking()
 webcam = cv2.VideoCapture(0)

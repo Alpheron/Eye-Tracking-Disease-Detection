@@ -5,7 +5,7 @@ import pygame
 from Eye_Tracking.EyeTracker import loopMethod
 from TestingGUI.Sprites.Background import Background
 from TestingGUI.Sprites.Target import Target
-from TestingGUI.Utils.Utils import getScreenDimensions, quitLoopConditional, init
+from Utils.GUI.Utils import getScreenDimensions, quitLoopConditional, init
 
 
 class EyeCalibration:
@@ -19,6 +19,7 @@ class EyeCalibration:
         self.leftEyeCoords = []
         self.rightEyeCoords = []
         self.targetCoords = []
+        self.eyeCornerPoints = []
         pygame.init()
         self.calibrationRoutine(gaze, webcam)
 
@@ -33,6 +34,8 @@ class EyeCalibration:
             eyeCoords = loopMethod(gaze, webcam)
             self.leftEyeCoords.append(eyeCoords[0])
             self.rightEyeCoords.append(eyeCoords[1])
+            if self.target.getEyeCoords:
+                self.eyeCornerPoints.append(eyeCoords)
             ticks = self.clock.tick_busy_loop(60)
             pygame.display.flip()
             quitLoopConditional(self.isRunning)
@@ -41,6 +44,5 @@ class EyeCalibration:
                 print(end - start)
                 break
 
-
-if __name__ == '__main__':
-    exception = EyeCalibration()
+# if __name__ == '__main__':
+#     exception = EyeCalibration()
