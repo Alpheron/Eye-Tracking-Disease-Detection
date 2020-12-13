@@ -14,7 +14,7 @@ class Target(pygame.sprite.Sprite):
         self.radius = 40
         self.image = loadImage('/home/tinku/Eye-Tracking-Disease-Detection/TestingGUI/Assets/target.png', self.radius)
         self.rect = self.image.get_rect()
-        self.velocity = 5
+        self.velocity = 100
         self.index = 0
         self.isMovementFinished = False
         self.finalDestReached = False
@@ -52,12 +52,10 @@ class Target(pygame.sprite.Sprite):
         self.rect.center = rectList
         constrainedRect = self.rect.clamp(self.screen.get_rect())
         self.rect = constrainedRect
-        print(self.rect.topleft)
         self.screen.blit(self.image, self.rect)
         if point == [0, 1000] or point == [0, 0] or point == [1000, 0] or point == [1000, 1000]:
             if self.rect.topleft == tuple([0, 0]) or self.rect.topright == tuple([1000, 0]) or self.rect.bottomright == \
                     tuple([1000, 1000]) or self.rect.bottomleft == tuple([0, 1000]):
-                print("True but is a corner")
                 self.isMovementFinished = True
         elif hypot(point[0] - rectList[0], point[1] - rectList[1]) <= 1.5:
             self.isMovementFinished = True
