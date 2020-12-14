@@ -42,6 +42,7 @@ class EyeCalibration:
             if self.target.finalDestReached:
                 end = time.time()
                 print(end - start)
+                pygame.quit()
                 break
 
 # if __name__ == '__main__':

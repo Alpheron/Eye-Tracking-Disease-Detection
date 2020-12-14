@@ -63,6 +63,6 @@ class Target(pygame.sprite.Sprite):
                     tuple(getScreenDimensions()) or self.rect.bottomleft == tuple([0, getScreenDimensions()[1]]):
                 self.getEyeCoords = True
                 self.isMovementFinished = True
-        elif hypot(point[0] - rectList[0], point[1] - rectList[1]) <= 1.5:
+        elif hypot(point[0] - rectList[0], point[1] - rectList[1]) <= 5:
             self.isMovementFinished = True
         return None

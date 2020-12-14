@@ -9,6 +9,8 @@ def main():
     graphRender = Plotter(eyeCallibrationGUI.leftEyeCoords, eyeCallibrationGUI.rightEyeCoords,
                           eyeCallibrationGUI.targetCoords)
     graphRender.plot()
+    # print(eyeCallibrationGUI.leftEyeCoords)
+    # print(eyeCallibrationGUI.rightEyeCoords)
 
 
 if __name__ == "__main__":
